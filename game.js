@@ -81,7 +81,7 @@ const startGame = () => {
     document.querySelector(`div:nth-child(${position.bear})`).classList.add("bear")
     randomBone()
 };
-const interval = setInterval(bearMove, 200)
+const interval = setInterval(bearMove, 150)
 
 
 window.setTimeout(startGame, 200);
