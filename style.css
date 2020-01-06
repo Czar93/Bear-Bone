@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body {
+    display: flex;
+}
+
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 50px auto 10px;
+    width: 600px;
+    height: 600px;
+    border: 1px solid gray;
+
+}
+
+.board div {
+    width: 10%;
+    height: 10%;
+    border: 1px solid gray;
+}
+
+.end {
+    display: none;
+    text-align: center;
+    margin: 30vh 0 0 0;
+}
+
+.result {
+    text-align: center;
+}
+
+.bear {
+    background-image: url(IMG/bear.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+}
+
+.bone {
+    background-image: url(IMG/bone.jpg);
+    background-size: cover;
+
+}
+
+.hide {
+    display: none
+}
