@@ -117,7 +117,7 @@ const bearNewDirection = () => {
         document.querySelector(".score").textContent = state.score
     }
     gameOver()
-}
+};
 
 
 const startGame = () => {
