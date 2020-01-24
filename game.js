@@ -8,22 +8,10 @@ const state = {
     bearDirection: "right",
     score: 0,
     c: 0
-}
-
-// let c;
-
-// const bear = {
-//     x: 0,
-//     y: 0
-// }
-
-
-
+};
 const board = [...document.querySelectorAll(".board div")];
 
-
-
-// Funkcja losująca diva z bonem
+// Function rensponsible for randomizing position of "bone"
 
 const randomBone = () => {
     state.boneX = Math.floor(10 * Math.random())
@@ -31,13 +19,13 @@ const randomBone = () => {
 
 };
 
-// ustalanie pozycji bona i beara
+// Function responsible for position "bear" and "bone"
 
 const position = (a, b) => {
     return a + b * state.boardHeight
-}
+};
 
-// renderowanie  bone i beara
+// Function responsible for rendering "bear" and "bone"
 
 const render = function () {
     for (let a = 0; a < board.length; a++) {
@@ -50,26 +38,17 @@ const render = function () {
 
 };
 
-
-// Funkcja GAME OVER - nieskończona 
+// Function responsible for ending the game
 
 const gameOver = () => {
-    if (state.bearX < 0 || state.bearX > 9) {
+    if (state.bearX < 0 || state.bearX > 9 || state.bearY < 0 || state.bearY > 9) {
         clearInterval(timer);
         document.querySelector("section").remove();
         document.querySelector(".end").style.display = "block"
-    }
-}
+    };
+};
 
-// pojedynczy koniec gry ze względu na oś Y
-
-const gameEnd = () => {
-    clearInterval(timer);
-    document.querySelector("section").remove();
-    document.querySelector(".end").style.display = "block"
-}
-
-// Funkcja odpowiedzialna za kierunek beara
+// Function responsible for bear movement
 
 const changeBearDirection = (e) => {
 
@@ -85,7 +64,7 @@ const changeBearDirection = (e) => {
 
 };
 
-// Funkcja odpowiedzialna za zmianę kierunku beara oraz ponowne jego wyrenderowanie
+// Function responsible for changing a direction of "bear" and it randering
 
 const bearNewDirection = () => {
     if (state.bearDirection === "left") {
@@ -102,8 +81,8 @@ const bearNewDirection = () => {
     };
     let b = position(state.bearX, state.bearY)
     if (state.bearY < 0 || state.bearY > 9) {
-        gameEnd()
-    }
+        gameOver()
+    };
     board[b].classList.add("bear");
 
     if (b === state.c) {
@@ -115,17 +94,18 @@ const bearNewDirection = () => {
         state.c = position(state.boneX, state.boneY)
         board[state.c].classList.add("bone");
         document.querySelector(".score").textContent = state.score
-    }
-    gameOver()
+    };
+    gameOver();
 };
 
+// Function responsible for starting the game
 
 const startGame = () => {
     randomBone();
-    render()
-}
-const timer = setInterval(bearNewDirection, 200)
+    render();
+};
 
+const timer = setInterval(bearNewDirection, 150);
 
-window.setTimeout(startGame, 200);
+window.setTimeout(startGame, 150);
 window.addEventListener("keydown", changeBearDirection);
